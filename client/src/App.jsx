@@ -1,82 +1,103 @@
 import React, { useState, useEffect } from 'react';
-import { checkHealth } from './services/api';
+import TopHeader from './components/TopHeader';
+import Navbar from './components/Navbar';
+import HeroCarousel from './components/HeroCarousel';
+import AboutSection from './components/AboutSection';
+import KeynotesSection from './components/KeynotesSection';
+import CommitteeSection from './components/CommitteeSection';
+import TopicsSection from './components/TopicsSection';
+import KeydatesSection from './components/KeydatesSection';
+import SubmissionSection from './components/SubmissionSection';
+import RegistrationSection from './components/RegistrationSection';
+import ContactSection from './components/ContactSection';
+import NewsletterSection from './components/NewsletterSection';
+import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
-function App() {
-  const [health, setHealth] = useState({ status: 'loading', message: 'Connecting to API...' });
+export default function App() {
+  const [activeSection, setActiveSection] = useState('HOME');
 
   useEffect(() => {
-    let isMounted = true;
-    const verifyApi = async () => {
-      const res = await checkHealth();
-      if (!isMounted) return;
-
-      if (res.success) {
-        setHealth({
-          status: 'online',
-          message: `API Connected (Express + Mongo ${res.data?.data?.database || 'ready'})`
-        });
+    const handleHash = () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash.includes('contact')) {
+        setActiveSection('CONTACT');
+      } else if (hash.includes('registration')) {
+        setActiveSection('REGISTRATION');
+      } else if (hash.includes('submission')) {
+        setActiveSection('SUBMISSION');
+      } else if (hash.includes('keydates')) {
+        setActiveSection('KEYDATES');
+      } else if (hash.includes('topics') || hash.includes('call-for-papers')) {
+        setActiveSection('TOPICS');
+      } else if (hash.includes('committee')) {
+        setActiveSection('COMMITTEE');
+      } else if (hash.includes('about')) {
+        setActiveSection('ABOUT');
+      } else if (hash.includes('keynotes')) {
+        setActiveSection('KEYNOTES');
       } else {
-        setHealth({
-          status: 'offline',
-          message: 'API Offline (Express ready on port 5000)'
-        });
+        setActiveSection('HOME');
       }
     };
 
-    verifyApi();
-    return () => {
-      isMounted = false;
-    };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
   }, []);
 
+  const handleNavClick = (sectionName) => {
+    setActiveSection(sectionName);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-6 relative text-center select-none">
-      {/* Background radial glow */}
-      <div className="absolute -z-10 w-96 h-64 bg-gradient-to-tr from-indigo-500/25 via-purple-500/20 to-pink-500/10 blur-3xl rounded-full pointer-events-none animate-pulse" />
+    <div className="flex flex-col min-h-screen bg-white">
+      {/* 1. Top Header Bar (Contact info, social links, brand name) */}
+      <TopHeader />
 
-      <div className="relative z-10 flex flex-col items-center justify-center max-w-2xl mx-auto">
-        {/* Tailwind & MERN Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-semibold tracking-widest uppercase text-indigo-300 backdrop-blur-md shadow-lg shadow-black/20 mb-6 hover:bg-indigo-500/10 hover:border-indigo-500/30 transition-all duration-300">
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
-          <span>Tailwind CSS + MERN Initialized</span>
-        </div>
+      {/* 2. Main Navigation Menu */}
+      <Navbar activeSection={activeSection} setActiveSection={handleNavClick} />
 
-        {/* Main Display Title */}
-        <h1
-          id="iceemcs-title"
-          className="text-6xl sm:text-8xl md:text-9xl font-black tracking-tight leading-none bg-gradient-to-br from-white via-slate-100 to-slate-400 bg-clip-text text-transparent drop-shadow-2xl mb-4 hover:scale-[1.02] transition-transform duration-300 cursor-default"
-          style={{ fontFamily: "var(--font-heading)" }}
-        >
-          ICEEMCS
-        </h1>
+      {/* Main Content Area */}
+      <main className="flex-1">
+        {activeSection === 'CONTACT' ? (
+          /* Contact Page View */
+          <>
+            <ContactSection />
+            <NewsletterSection />
+          </>
+        ) : activeSection === 'REGISTRATION' ? (
+          /* Registration Fee & Deadline View */
+          <RegistrationSection />
+        ) : activeSection === 'SUBMISSION' ? (
+          /* Paper Submission Guidelines View */
+          <SubmissionSection />
+        ) : activeSection === 'KEYDATES' ? (
+          /* Dedicated Keydates View */
+          <KeydatesSection />
+        ) : activeSection === 'TOPICS' ? (
+          /* Conference Topics / Call for Papers View */
+          <TopicsSection onNavigate={handleNavClick} />
+        ) : activeSection === 'COMMITTEE' ? (
+          /* Committee Page View */
+          <CommitteeSection />
+        ) : (
+          /* Homepage Layout */
+          <>
+            <HeroCarousel />
+            <AboutSection />
+            <KeynotesSection />
+            <NewsletterSection />
+          </>
+        )}
+      </main>
 
-        {/* Subtitle */}
-        <p className="text-base sm:text-lg text-slate-400 font-normal tracking-wide max-w-md mx-auto mb-10">
-          Clean, production-ready architecture powered by MongoDB, Express, React, Node.js & Tailwind CSS.
-        </p>
+      {/* 3. Complete Footer Layout */}
+      <Footer setActiveSection={handleNavClick} />
 
-        {/* Status indicator pill */}
-        <div
-          id="system-status-indicator"
-          className="inline-flex items-center gap-3 px-5 py-2.5 rounded-xl bg-slate-900/80 border border-white/10 backdrop-blur-xl shadow-2xl text-sm text-slate-300 hover:border-white/20 transition-all duration-300"
-        >
-          <span
-            className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
-              health.status === 'online'
-                ? 'bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]'
-                : health.status === 'offline'
-                ? 'bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.8)]'
-                : 'bg-amber-400 animate-pulse shadow-[0_0_10px_rgba(251,191,36,0.8)]'
-            }`}
-          />
-          <span>{health.message}</span>
-          <span className="font-mono text-xs text-slate-400 bg-white/5 px-2 py-0.5 rounded border border-white/5">
-            v1.0.0
-          </span>
-        </div>
-      </div>
-    </main>
+      {/* Floating Scroll to Top Button */}
+      <ScrollToTop />
+    </div>
   );
 }
-
-export default App;
