@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Menu, X, Send, GraduationCap } from 'lucide-react';
 
 export default function Navbar({ activeSection, setActiveSection }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const timeoutRef = useRef(null);
 
   const navItems = [
     { name: 'Home', action: 'HOME', href: '#home' },
@@ -25,11 +26,31 @@ export default function Navbar({ activeSection, setActiveSection }) {
     { name: 'Contact', action: 'CONTACT', href: '#contact' },
   ];
 
+  // Mouse enter and leave handlers with debounce to prevent premature closing
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setDropdownOpen(false);
+    }, 180);
+  };
+
   const handleItemClick = (actionName) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setActiveSection?.(actionName);
     setMobileMenuOpen(false);
     setDropdownOpen(false);
   };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   const isCallForPapersActive =
     activeSection === 'TOPICS' ||
@@ -75,9 +96,9 @@ export default function Navbar({ activeSection, setActiveSection }) {
                 return (
                   <div
                     key={item.name}
-                    className="relative group"
-                    onMouseEnter={() => setDropdownOpen(true)}
-                    onMouseLeave={() => setDropdownOpen(false)}
+                    className="relative group py-2"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
                   >
                     <button
                       onClick={() => handleItemClick(item.action)}
@@ -88,35 +109,45 @@ export default function Navbar({ activeSection, setActiveSection }) {
                       }`}
                     >
                       <span>{item.name}</span>
-                      <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-slate-600 transition-transform group-hover:rotate-180" />
+                      <ChevronDown
+                        className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
+                          dropdownOpen ? 'rotate-180 text-slate-600' : 'group-hover:rotate-180'
+                        }`}
+                      />
                     </button>
 
-                    {/* Dropdown Menu */}
+                    {/* Dropdown Menu Container with Zero Gap & Invisible Hover Bridge */}
                     <div
-                      className={`absolute left-0 top-full w-64 bg-white shadow-xl rounded-xl border border-slate-100 p-2 mt-1 transition-all duration-200 z-50 ${
+                      className={`absolute left-0 top-full pt-2 w-64 transition-all duration-200 z-50 ${
                         dropdownOpen
                           ? 'opacity-100 visible translate-y-0'
-                          : 'opacity-0 invisible -translate-y-2 pointer-events-none'
+                          : 'opacity-0 invisible -translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto'
                       }`}
                     >
-                      {item.subItems.map((subItem) => (
-                        <a
-                          key={subItem.label}
-                          href={subItem.href}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleItemClick(subItem.action);
-                            window.location.hash = subItem.href;
-                          }}
-                          className={`block px-3.5 py-2.5 rounded-lg text-xs font-medium transition-colors ${
-                            activeSection === subItem.action
-                              ? 'bg-amber-50 text-amber-900 font-bold border border-amber-200/60'
-                              : 'text-slate-700 hover:bg-slate-50 hover:text-[#0B192C]'
-                          }`}
-                        >
-                          {subItem.label}
-                        </a>
-                      ))}
+                      {/* Invisible Hover Bridge spanning above the menu */}
+                      <div className="absolute -top-3 left-0 w-full h-5" aria-hidden="true" />
+
+                      {/* Dropdown Card */}
+                      <div className="bg-white shadow-xl rounded-xl border border-slate-100 p-2 ring-1 ring-slate-900/5">
+                        {item.subItems.map((subItem) => (
+                          <a
+                            key={subItem.label}
+                            href={subItem.href}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleItemClick(subItem.action);
+                              window.location.hash = subItem.href;
+                            }}
+                            className={`block px-3.5 py-2.5 rounded-lg text-xs font-medium transition-colors ${
+                              activeSection === subItem.action
+                                ? 'bg-amber-50 text-amber-900 font-bold border border-amber-200/60'
+                                : 'text-slate-700 hover:bg-slate-50 hover:text-[#0B192C]'
+                            }`}
+                          >
+                            {subItem.label}
+                          </a>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 );
