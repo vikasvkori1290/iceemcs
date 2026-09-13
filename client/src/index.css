@@ -6,9 +6,12 @@
 }
 
 :root {
-  --color-primary: #c68a2c;
-  --color-primary-dark: #b07823;
-  --color-footer-bg: #22252a;
+  --navy-dark: #0B192C;
+  --navy-primary: #0F2042;
+  --navy-light: #1E3E62;
+  --amber-gold: #D97706;
+  --amber-light: #F59E0B;
+  --bg-academic: #f8fafc;
 }
 
 html, body {
@@ -20,8 +23,8 @@ html, body {
 
 body {
   font-family: var(--font-body);
-  background-color: #ffffff;
-  color: #2d3748;
+  background-color: #f8fafc;
+  color: #1e293b;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,4 +35,19 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }

@@ -1,109 +1,76 @@
 import React from 'react';
-import { MapPin, Phone, Mail, ChevronRight } from 'lucide-react';
+import { MapPin, Phone, Mail, ChevronRight, GraduationCap, Globe, Clock } from 'lucide-react';
 
 export default function Footer({ setActiveSection }) {
   const quickLinks = [
-    { name: 'About Us', href: '#about', action: 'ABOUT' },
-    { name: 'Topics', href: '#topics', action: 'TOPICS' },
-    { name: 'Keynotes', href: '#keynotes', action: 'KEYNOTES' },
-    { name: 'Keydates', href: '#keydates', action: 'KEYDATES' },
-    { name: 'Contact', href: '#contact', action: 'CONTACT' },
+    { name: 'Home', action: 'HOME', href: '#home' },
+    { name: 'About Conference & CMRU', action: 'ABOUT', href: '#about' },
+    { name: 'Keynote Speakers', action: 'KEYNOTES', href: '#keynotes' },
+    { name: 'Organizing Committee', action: 'COMMITTEE', href: '#committee' },
+    { name: 'Call for Papers & Topics', action: 'TOPICS', href: '#topics' },
+    { name: 'Paper Submission', action: 'SUBMISSION', href: '#submission' },
+    { name: 'Registration & Fees', action: 'REGISTRATION', href: '#registration' },
+    { name: 'Contact Us', action: 'CONTACT', href: '#contact' },
   ];
 
   return (
-    <footer className="bg-[#22252a] text-gray-300 pt-16 pb-8 border-t border-gray-800 select-none">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8">
-        {/* Main 3 Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 pb-12 border-b border-gray-700/60">
-          {/* Column 1: ADDRESS */}
-          <div className="space-y-4">
-            <h4 className="text-white font-extrabold text-base sm:text-lg tracking-wider uppercase">
-              ADDRESS
-            </h4>
-
-            <div className="space-y-3 text-xs sm:text-sm text-gray-400">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#c68a2c] shrink-0 mt-0.5" />
-                <span>CMR University, Kalyana Nagar, Bengaluru 560043, India.</span>
+    <footer className="bg-[#08121f] text-slate-300 border-t border-slate-800 select-none">
+      {/* Main 4-Column Academic Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 pt-16 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
+          
+          {/* COLUMN 1: Conference Overview & Identity (4 cols) */}
+          <div className="lg:col-span-4 space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center">
+                <GraduationCap className="w-6 h-6 stroke-[2.2]" />
               </div>
-
-              <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#c68a2c] shrink-0" />
-                <a href="tel:+919880690684" className="hover:text-white transition-colors">
-                  +91 98806 90684
-                </a>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#c68a2c] shrink-0" />
-                <a href="mailto:editor@cmr.edu.in" className="hover:text-white transition-colors">
-                  editor@cmr.edu.in
-                </a>
+              <div>
+                <span className="font-extrabold text-xl tracking-tight text-white block">
+                  ICEEMCS 2027
+                </span>
+                <span className="text-[11px] font-semibold text-amber-400 uppercase tracking-wider">
+                  International Conference
+                </span>
               </div>
             </div>
 
-            {/* Social Icons row (Twitter, Facebook, YouTube, LinkedIn) */}
-            <div className="flex items-center gap-2 pt-2">
-              {/* Twitter */}
-              <a
-                href="#twitter"
-                aria-label="Twitter"
-                className="w-7 h-7 bg-white text-[#22252a] flex items-center justify-center rounded-xs hover:bg-[#c68a2c] hover:text-white transition-colors"
-              >
-                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </a>
+            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              1st International Conference on Electrical, Electronics, Management and Computer Sciences. Hosted by CMR University, Bengaluru. Dedicated to advancing scientific inquiry, high-impact innovations, and international academic collaborations.
+            </p>
 
-              {/* Facebook */}
-              <a
-                href="#facebook"
-                aria-label="Facebook"
-                className="w-7 h-7 bg-white text-[#22252a] flex items-center justify-center rounded-xs hover:bg-[#c68a2c] hover:text-white transition-colors"
-              >
-                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                  <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
-                </svg>
-              </a>
-
-              {/* YouTube */}
-              <a
-                href="#youtube"
-                aria-label="YouTube"
-                className="w-7 h-7 bg-white text-[#22252a] flex items-center justify-center rounded-xs hover:bg-[#c68a2c] hover:text-white transition-colors"
-              >
-                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                </svg>
-              </a>
-
-              {/* LinkedIn */}
-              <a
-                href="#linkedin"
-                aria-label="LinkedIn"
-                className="w-7 h-7 bg-white text-[#22252a] flex items-center justify-center rounded-xs hover:bg-[#c68a2c] hover:text-white transition-colors"
-              >
-                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.6a1.65 1.65 0 0 0-1.66 1.66c0 .92.74 1.67 1.66 1.67.92 0 1.67-.75 1.67-1.67 0-.92-.75-1.66-1.67-1.66z" />
-                </svg>
-              </a>
+            <div className="pt-2 flex items-center gap-3">
+              <span className="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-xs font-semibold">
+                IEEE Format
+              </span>
+              <span className="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-xs font-semibold">
+                CMT Submission
+              </span>
+              <span className="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-xs font-semibold">
+                Double-Blind Review
+              </span>
             </div>
           </div>
 
-          {/* Column 2: QUICK LINKS */}
-          <div className="space-y-4">
-            <h4 className="text-white font-extrabold text-base sm:text-lg tracking-wider uppercase">
-              QUICK LINKS
+          {/* COLUMN 2: Quick Navigation Links (2.5 cols) */}
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="text-white font-bold text-sm sm:text-base uppercase tracking-wider border-b border-slate-800 pb-2">
+              Quick Navigation
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    onClick={() => setActiveSection?.(link.action || link.name.toUpperCase())}
-                    className="flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors group"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setActiveSection?.(link.action);
+                      window.location.hash = link.href;
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="flex items-center gap-1.5 text-slate-400 hover:text-amber-400 transition-colors group py-0.5 cursor-pointer"
                   >
-                    <ChevronRight className="w-3.5 h-3.5 text-[#c68a2c] group-hover:translate-x-0.5 transition-transform" />
+                    <ChevronRight className="w-3.5 h-3.5 text-amber-500/80 group-hover:translate-x-1 transition-transform" />
                     <span>{link.name}</span>
                   </a>
                 </li>
@@ -111,28 +78,114 @@ export default function Footer({ setActiveSection }) {
             </ul>
           </div>
 
-          {/* Column 3: OUR VENUE */}
-          <div className="space-y-4">
-            <h4 className="text-white font-extrabold text-base sm:text-lg tracking-wider uppercase">
-              OUR VENUE
+          {/* COLUMN 3: Venue Location & Address (2.5 cols) */}
+          <div className="lg:col-span-2 space-y-4">
+            <h4 className="text-white font-bold text-sm sm:text-base uppercase tracking-wider border-b border-slate-800 pb-2">
+              Venue Location
             </h4>
-            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
-              CMR University, OMBR Campus, No. 5, Bhuvanagiri, Lakshmamma Layout, Banaswadi, Bengaluru, Karnataka 560043.
-            </p>
-          </div>
-        </div>
+            
+            <div className="space-y-3 text-xs sm:text-sm text-slate-400">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <strong className="font-semibold text-slate-200 block">
+                    CMR University
+                  </strong>
+                  <p className="leading-relaxed">
+                    OMBR Campus, No. 5, Bhuvanagiri, Lakshmamma Layout, Banaswadi, Bengaluru, Karnataka 560043, India.
+                  </p>
+                </div>
+              </div>
 
-        {/* Bottom Bar: Copyright & Attribution */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-          <p>
-            &copy; <strong className="text-gray-300 font-bold">ICEEMCS</strong>, All Right Reserved.
+              <div className="pt-1">
+                <a
+                  href="https://maps.google.com/?q=HRBR+Layout+2nd+Block,+Kalyan+Nagar,+Bengaluru,+Karnataka+560043"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 font-semibold"
+                >
+                  <Globe className="w-3.5 h-3.5" />
+                  <span>View on Google Maps &rarr;</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* COLUMN 4: Contact Secretariat (3 cols) */}
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="text-white font-bold text-sm sm:text-base uppercase tracking-wider border-b border-slate-800 pb-2">
+              Contact Secretariat
+            </h4>
+
+            <div className="space-y-3 text-xs sm:text-sm text-slate-400">
+              <div className="flex items-start gap-2.5">
+                <Mail className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-[11px] text-slate-500 uppercase block font-semibold">
+                    Editorial Inquiries
+                  </span>
+                  <a
+                    href="mailto:editor@cmr.edu.in"
+                    className="text-slate-200 hover:text-amber-400 transition-colors font-medium"
+                  >
+                    editor@cmr.edu.in
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2.5">
+                <Phone className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-[11px] text-slate-500 uppercase block font-semibold">
+                    Conference Chairs Phone
+                  </span>
+                  <a
+                    href="tel:+919880690684"
+                    className="text-slate-200 hover:text-amber-400 transition-colors font-medium block"
+                  >
+                    +91 98806 90684 (Dr. Om Prakash)
+                  </a>
+                  <a
+                    href="tel:+917703004534"
+                    className="text-slate-200 hover:text-amber-400 transition-colors font-medium block"
+                  >
+                    +91 7703 004 534 (Dr. Brijesh Mishra)
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 text-xs text-slate-400 pt-1">
+                <Clock className="w-3.5 h-3.5 text-amber-400" />
+                <span>Mon–Fri, 9:00 AM – 5:00 PM IST</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Sub-Footer Copyright Bar */}
+      <div className="border-t border-slate-800/80 bg-[#060e18] py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <p className="text-center sm:text-left">
+            &copy; {new Date().getFullYear()} <strong className="text-slate-200 font-bold">ICEEMCS</strong>. All Rights Reserved. Hosted by <span className="text-slate-200">CMR University, Bengaluru</span>.
           </p>
-          <p>
-            &copy; Designed by <span className="text-gray-300 font-medium">CMR University, Bengaluru</span>.
-          </p>
+
+          <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
+            <span className="hover:text-slate-200 transition-colors cursor-pointer">
+              Privacy Policy
+            </span>
+            <span>•</span>
+            <span className="hover:text-slate-200 transition-colors cursor-pointer">
+              Publication Ethics
+            </span>
+            <span>•</span>
+            <span className="hover:text-slate-200 transition-colors cursor-pointer">
+              Terms & Conditions
+            </span>
+          </div>
         </div>
       </div>
     </footer>
   );
 }
-
