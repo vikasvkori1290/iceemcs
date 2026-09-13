@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import TopHeader from './components/TopHeader';
 import Navbar from './components/Navbar';
 import ModernHero from './components/ModernHero';
-import ModernAbout from './components/ModernAbout';
-import ModernKeynotes from './components/ModernKeynotes';
 import CommitteeSection from './components/CommitteeSection';
 import TopicsSection from './components/TopicsSection';
 import KeydatesSection from './components/KeydatesSection';
@@ -97,12 +95,6 @@ export default function App() {
           <>
             {/* Split Layout Hero Section with Interactive Timeline Card */}
             <ModernHero onNavigate={handleNavClick} />
-
-            {/* About Section: CMR University Profile + Vision & Mission Feature Cards */}
-            <ModernAbout onNavigate={handleNavClick} />
-
-            {/* Keynote Speakers: Modern Grid with Circular Headshots & Styled TBA Card */}
-            <ModernKeynotes onNavigate={handleNavClick} />
 
             {/* Conference Newsletter Bulletin */}
             <NewsletterSection />

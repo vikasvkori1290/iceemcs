@@ -1,11 +1,23 @@
 import React from 'react';
-import { Gauge, CheckSquare } from 'lucide-react';
+import { Gauge, CheckSquare, Eye, Target, CheckCircle, BookOpen } from 'lucide-react';
 
 export default function AboutPage({ onNavigate }) {
   const keydates = [
     { label: 'Start Submission:', date: '25th July 2026.' },
     { label: 'Last date of Submission:', date: '5th Feb 2027.' },
     { label: 'Acceptance Date:', date: '10th April 2027.' },
+  ];
+
+  const visionPoints = [
+    'Cultivate world-class scientific rigor through cross-border collaboration and peer review.',
+    'Champion transformative research bridging electrical technologies, AI computing, and modern management.',
+    'Build sustainable interdisciplinary pathways connecting academic breakthroughs directly with global industries.',
+  ];
+
+  const missionPoints = [
+    'Deliver an equitable, prestigious presentation platform for emerging researchers and distinguished scholars.',
+    'Maintain rigorous publication integrity adhering strictly to IEEE and global indexing standards.',
+    'Foster experiential learning, ethical technological advancements, and high-impact patentable discoveries.',
   ];
 
   return (
@@ -27,20 +39,20 @@ export default function AboutPage({ onNavigate }) {
           <div className="text-xs sm:text-sm font-medium tracking-wide text-gray-500 flex items-center justify-center gap-2">
             <button
               onClick={() => onNavigate?.('HOME')}
-              className="hover:text-[#c68a2c] transition-colors cursor-pointer text-[#c68a2c]"
+              className="hover:text-amber-600 transition-colors cursor-pointer text-amber-600 font-semibold"
             >
               Home
             </button>
             <span className="text-gray-300">/</span>
-            <span className="text-[#c68a2c]">Pages</span>
+            <span className="text-amber-600 font-semibold">Pages</span>
             <span className="text-gray-300">/</span>
             <span className="text-gray-700">About</span>
           </div>
         </div>
       </div>
 
-      {/* 2. Main Content Area */}
-      <section className="pt-16 pb-20 sm:pb-28 max-w-7xl mx-auto px-4 sm:px-8">
+      {/* 2. Main University Profile Section */}
+      <section className="pt-16 pb-16 max-w-7xl mx-auto px-4 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left: Campus Image with Decorative Offset Gold Frame */}
           <div className="lg:col-span-5 relative mt-2">
@@ -48,10 +60,10 @@ export default function AboutPage({ onNavigate }) {
             <div className="absolute -top-4 -left-4 w-48 sm:w-64 h-72 sm:h-96 border-[3px] border-[#c68a2c] -z-0 pointer-events-none" />
 
             {/* University Campus Image */}
-            <div className="relative z-10 overflow-hidden shadow-lg bg-gray-100">
+            <div className="relative z-10 overflow-hidden shadow-lg bg-gray-100 rounded-lg">
               <img
-                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1000&q=80"
-                alt="CMR University Campus Archway and Buildings"
+                src="/cmr-university.png"
+                alt="CMR University Campus Building"
                 className="w-full h-[320px] sm:h-[420px] object-cover"
               />
             </div>
@@ -106,7 +118,82 @@ export default function AboutPage({ onNavigate }) {
           </div>
         </div>
       </section>
+
+      {/* 3. Vision & Mission Cards Section */}
+      <section className="py-16 bg-slate-50 border-t border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
+            <span className="text-xs font-bold text-amber-600 uppercase tracking-wider block">
+              Institutional Core Values
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#0B192C]">
+              Vision & Mission Framework
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Vision Feature Card */}
+            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-200/90 relative overflow-hidden">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-xl bg-[#0B192C] text-amber-400 flex items-center justify-center shadow-md shrink-0">
+                  <Eye className="w-6 h-6 stroke-[2.2]" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-[#0B192C] tracking-tight">
+                    Our Vision
+                  </h4>
+                  <p className="text-xs font-semibold text-amber-700 uppercase tracking-wider">
+                    Global Scientific Impact
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-sm text-slate-600 mb-5 leading-relaxed">
+                To be recognized internationally as a catalyst for cross-disciplinary research that empowers next-generation scholars to innovate ethical, transformative technologies.
+              </p>
+
+              <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
+                {visionPoints.map((point, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Mission Feature Card */}
+            <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-200/90 relative overflow-hidden">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-xl bg-[#0B192C] text-blue-400 flex items-center justify-center shadow-md shrink-0">
+                  <Target className="w-6 h-6 stroke-[2.2]" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-[#0B192C] tracking-tight">
+                    Our Mission
+                  </h4>
+                  <p className="text-xs font-semibold text-blue-700 uppercase tracking-wider">
+                    Fostering Innovation Ecosystem
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-sm text-slate-600 mb-5 leading-relaxed">
+                To cultivate an inclusive and rigorous academic ecosystem that values scholarly integrity, accelerates deep-tech industry partnerships, and rewards ingenuity.
+              </p>
+
+              <ul className="space-y-3 text-xs sm:text-sm text-slate-700">
+                {missionPoints.map((point, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
-

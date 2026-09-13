@@ -1,7 +1,48 @@
-import React from 'react';
-import { Calendar, MapPin, Send, Download, Clock, CheckCircle2, AlertCircle, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import {
+  Calendar,
+  MapPin,
+  Send,
+  Download,
+  Clock,
+  CheckCircle2,
+  AlertCircle,
+  ArrowRight,
+  CalendarPlus,
+  Share2,
+  Flame,
+} from 'lucide-react';
 
 export default function ModernHero({ onNavigate }) {
+  // 1. Live Countdown Timer to Paper Submission Deadline (February 5, 2027)
+  const targetDate = new Date('2027-02-05T23:59:59+05:30').getTime();
+
+  const calculateTimeLeft = () => {
+    const now = new Date().getTime();
+    const difference = targetDate - now;
+
+    if (difference <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / 1000 / 60) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+    };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [calendarMenuOpen, setCalendarMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   const deadlines = [
     {
       label: 'Start Submission',
@@ -35,8 +76,38 @@ export default function ModernHero({ onNavigate }) {
     },
   ];
 
+  // Calendar Links & Download ICS
+  const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=ICEEMCS+2027:+International+Conference+on+Electrical,+Electronics,+Management+and+Computer+Sciences&dates=20270713T033000Z/20270714T123000Z&details=1st+International+Conference+at+CMR+University,+Bengaluru.+Official+Website:+https://iceemcs.co.in/+Email:+editor@cmr.edu.in&location=CMR+University,+OMBR+Campus,+Banaswadi,+Bengaluru+560043,+Karnataka,+India`;
+
+  const handleDownloadICS = () => {
+    const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//ICEEMCS//Conference 2027//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+SUMMARY:ICEEMCS 2027 Conference (CMR University)
+DESCRIPTION:1st International Conference on Electrical, Electronics, Management and Computer Sciences at CMR University, Bengaluru. Website: https://iceemcs.co.in/
+LOCATION:CMR University, OMBR Campus, Banaswadi, Bengaluru 560043, India
+DTSTART:20270713T033000Z
+DTEND:20270714T123000Z
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR`;
+
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'ICEEMCS-2027-Conference.ics';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    setCalendarMenuOpen(false);
+  };
+
   const handleDownloadCFP = () => {
-    // Generate and download a structured text/markdown CFP brochure
     const cfpText = `===============================================================
 ICEEMCS 2027 - CALL FOR PAPERS BROCHURE
 1st International Conference on Electrical, Electronics, Management and Computer Sciences
@@ -78,7 +149,7 @@ Submit through Microsoft CMT. All manuscripts must follow IEEE conference format
     <section className="relative w-full bg-gradient-to-br from-[#07111f] via-[#0B192C] to-[#0F2042] text-white py-16 sm:py-24 lg:py-28 overflow-hidden">
       {/* Subtle geometric background grid accent */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
-      
+
       {/* Ambient glowing radial blur */}
       <div className="absolute top-1/4 -left-32 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -86,12 +157,17 @@ Submit through Microsoft CMT. All manuscripts must follow IEEE conference format
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
           
-          {/* LEFT COLUMN: Conference Details & Dual CTA Buttons */}
+          {/* LEFT COLUMN: Conference Details, Live Countdown & Dual CTA */}
           <div className="lg:col-span-7 space-y-6 sm:space-y-8">
-            {/* Conference Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-bold uppercase tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-              <span>1st International Conference • Physical Mode</span>
+            {/* Conference Eyebrow Badge & Mode */}
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-bold uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                <span>1st International Conference • Physical Mode</span>
+              </div>
+              <span className="text-xs text-slate-400 font-medium hidden sm:inline-block">
+                IEEE Standard Formatting
+              </span>
             </div>
 
             {/* Conference Full Title */}
@@ -108,15 +184,50 @@ Submit through Microsoft CMT. All manuscripts must follow IEEE conference format
               </p>
             </div>
 
-            {/* Venue & Date Card */}
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-slate-300">
+            {/* Venue, Date Badge & Add to Calendar Button */}
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm text-slate-300">
               <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3.5 py-2 rounded-lg backdrop-blur-xs">
                 <Calendar className="w-4 h-4 text-amber-400 shrink-0" />
                 <span className="font-semibold text-white">July 13–14, 2027</span>
               </div>
               <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3.5 py-2 rounded-lg backdrop-blur-xs">
                 <MapPin className="w-4 h-4 text-amber-400 shrink-0" />
-                <span className="text-slate-200">CMR University, Bangalore, India</span>
+                <span className="text-slate-200">CMR University, Bengaluru</span>
+              </div>
+
+              {/* Add to Calendar Dropdown Button */}
+              <div className="relative">
+                <button
+                  onClick={() => setCalendarMenuOpen(!calendarMenuOpen)}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/40 text-amber-300 text-xs font-bold transition-all cursor-pointer shadow-xs"
+                  title="Add ICEEMCS 2027 to your calendar"
+                >
+                  <CalendarPlus className="w-4 h-4 text-amber-400" />
+                  <span>Add to Calendar</span>
+                </button>
+
+                {/* Calendar Dropdown Options */}
+                {calendarMenuOpen && (
+                  <div className="absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl p-2 z-50 text-xs space-y-1 backdrop-blur-md">
+                    <a
+                      href={googleCalendarUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setCalendarMenuOpen(false)}
+                      className="flex items-center gap-2 px-3 py-2 rounded-lg text-slate-200 hover:bg-amber-500/20 hover:text-amber-300 transition-colors font-semibold"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-blue-400" />
+                      <span>Google Calendar</span>
+                    </a>
+                    <button
+                      onClick={handleDownloadICS}
+                      className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-slate-200 hover:bg-amber-500/20 hover:text-amber-300 transition-colors text-left font-semibold cursor-pointer"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-amber-400" />
+                      <span>Apple / Outlook (.ics)</span>
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -124,6 +235,60 @@ Submit through Microsoft CMT. All manuscripts must follow IEEE conference format
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl font-normal">
               ICEEMCS 2027 provides a premier, multidisciplinary global forum for scholars, engineers, and industry visionaries to present innovative research, discuss emerging breakthroughs, and foster international collaborations across the engineering and managerial spectrum.
             </p>
+
+            {/* LIVE COUNTDOWN TIMER (Days, Hours, Minutes, Seconds to Feb 05, 2027) */}
+            <div className="bg-slate-900/80 border border-amber-500/30 rounded-2xl p-4 sm:p-5 backdrop-blur-md shadow-xl max-w-xl">
+              <div className="flex items-center justify-between gap-2 mb-3">
+                <div className="flex items-center gap-2">
+                  <Flame className="w-4 h-4 text-amber-400 animate-bounce" />
+                  <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">
+                    Paper Submission Countdown
+                  </span>
+                </div>
+                <span className="text-[11px] font-semibold text-slate-400">
+                  Target: Feb 05, 2027
+                </span>
+              </div>
+
+              {/* 4 Counter Boxes */}
+              <div className="grid grid-cols-4 gap-2 sm:gap-3 text-center">
+                <div className="bg-slate-950/80 border border-slate-800 rounded-xl py-2.5 px-1 shadow-inner">
+                  <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight">
+                    {String(timeLeft.days).padStart(2, '0')}
+                  </span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    Days
+                  </span>
+                </div>
+
+                <div className="bg-slate-950/80 border border-slate-800 rounded-xl py-2.5 px-1 shadow-inner">
+                  <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight">
+                    {String(timeLeft.hours).padStart(2, '0')}
+                  </span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    Hours
+                  </span>
+                </div>
+
+                <div className="bg-slate-950/80 border border-slate-800 rounded-xl py-2.5 px-1 shadow-inner">
+                  <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight">
+                    {String(timeLeft.minutes).padStart(2, '0')}
+                  </span>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    Minutes
+                  </span>
+                </div>
+
+                <div className="bg-slate-950/80 border border-slate-800 rounded-xl py-2.5 px-1 shadow-inner">
+                  <span className="block text-xl sm:text-2xl lg:text-3xl font-black text-amber-400 tracking-tight">
+                    {String(timeLeft.seconds).padStart(2, '0')}
+                  </span>
+                  <span className="text-[10px] font-bold text-amber-400/80 uppercase tracking-wider">
+                    Seconds
+                  </span>
+                </div>
+              </div>
+            </div>
 
             {/* Dual CTA Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -143,14 +308,6 @@ Submit through Microsoft CMT. All manuscripts must follow IEEE conference format
                 <span>Download CFP Brochure</span>
               </button>
             </div>
-
-            {/* Quick Academic Badges */}
-            <div className="pt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-400 border-t border-slate-800/80">
-              <span className="font-semibold text-slate-300">Technical Scope:</span>
-              <span>• IEEE Standard Templates</span>
-              <span>• Double-Blind Peer Review</span>
-              <span>• Scrutiny Check (&lt;15% Similarity)</span>
-            </div>
           </div>
 
           {/* RIGHT COLUMN: Interactive 'Important Dates' Timeline Card */}
@@ -167,7 +324,7 @@ Submit through Microsoft CMT. All manuscripts must follow IEEE conference format
                       Important Dates
                     </h3>
                     <p className="text-xs text-slate-500 font-medium">
-                      Submission & Milestone Timeline
+                      Key Milestone Milestones
                     </p>
                   </div>
                 </div>
@@ -221,7 +378,7 @@ Submit through Microsoft CMT. All manuscripts must follow IEEE conference format
               {/* Card Footer Link */}
               <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between">
                 <span className="text-xs text-slate-500">
-                  Strict deadlines apply. CMT System required.
+                  Strict deadlines apply via Microsoft CMT.
                 </span>
                 <button
                   onClick={() => onNavigate?.('KEYDATES')}
@@ -239,4 +396,3 @@ Submit through Microsoft CMT. All manuscripts must follow IEEE conference format
     </section>
   );
 }
-

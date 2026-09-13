@@ -39,8 +39,8 @@ export default function ModernAbout({ onNavigate }) {
           <div className="lg:col-span-6 space-y-6">
             <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200 group">
               <img
-                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80"
-                alt="CMR University Campus Architecture"
+                src="/cmr-university.png"
+                alt="CMR University Campus Building"
                 className="w-full h-[320px] sm:h-[380px] object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B192C]/90 via-[#0B192C]/30 to-transparent" />
