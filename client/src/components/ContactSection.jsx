@@ -47,7 +47,7 @@ export default function ContactSection() {
   return (
     <div id="contact" className="w-full bg-slate-50">
       {/* 1. Top Section: Query Details & Contact Form */}
-      <section className="relative w-full min-h-[580px] flex items-center bg-[#08121f] overflow-hidden py-16 sm:py-20">
+      <section className="relative w-full min-h-145 flex items-center bg-ocean-deep overflow-hidden py-16 sm:py-20">
         {/* Background Circuit Image with Dark Overlay */}
         <div className="absolute inset-0 z-0">
           <img
@@ -55,7 +55,7 @@ export default function ContactSection() {
             alt="Circuit Background"
             className="w-full h-full object-cover object-center filter brightness-[0.3] contrast-125"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#08121f]/95 via-[#0B192C]/90 to-[#08121f]/95" />
+          <div className="absolute inset-0 bg-linear-to-r from-ocean-deep/95 via-[#021f45]/90 to-ocean-deep/95" />
         </div>
 
         {/* Content Container */}
@@ -64,13 +64,13 @@ export default function ContactSection() {
             {/* Left Column: Query Info */}
             <div className="lg:col-span-6 space-y-8">
               <div>
-                <span className="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 font-bold text-xs uppercase tracking-wider border border-amber-500/30 mb-3">
+                <span className="inline-block px-3 py-1 rounded-full bg-ocean-ice/20 text-ocean-sky font-bold text-xs uppercase tracking-wider border border-ocean-cyan/40 mb-3">
                   Conference Secretariat
                 </span>
                 <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-white tracking-wide leading-tight uppercase">
                   HAVE ANY QUERY? FEEL FREE TO CONTACT US
                 </h1>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mt-2 max-w-lg">
+                <p className="text-slate-200 text-xs sm:text-sm leading-relaxed mt-2 max-w-lg">
                   Reach out to the organizing chairs and track conveners for inquiries regarding paper submission, registration, travel assistance, or presentation slots.
                 </p>
               </div>
@@ -78,8 +78,8 @@ export default function ContactSection() {
               <div className="space-y-6 pt-2">
                 {/* MAIL US */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-md text-amber-400">
-                    <Mail className="w-6 h-6 stroke-[2]" />
+                  <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-md text-ocean-cyan">
+                    <Mail className="w-6 h-6 stroke-2" />
                   </div>
                   <div className="space-y-1">
                     <h3 className="text-xs sm:text-sm font-extrabold text-white tracking-wider uppercase">
@@ -87,11 +87,11 @@ export default function ContactSection() {
                     </h3>
                     <a
                       href="mailto:editor@cmr.edu.in"
-                      className="text-amber-300 hover:text-amber-200 text-sm font-semibold transition-colors block"
+                      className="text-ocean-sky hover:text-white text-sm font-semibold transition-colors block"
                     >
                       editor@cmr.edu.in
                     </a>
-                    <span className="text-[11px] text-slate-400 block">
+                    <span className="text-[11px] text-slate-300 block">
                       General inquiries & manuscript queries
                     </span>
                   </div>
@@ -99,23 +99,23 @@ export default function ContactSection() {
 
                 {/* CALL US */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-md text-amber-400">
-                    <Phone className="w-6 h-6 stroke-[2]" />
+                  <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-md text-ocean-cyan">
+                    <Phone className="w-6 h-6 stroke-2" />
                   </div>
                   <div className="space-y-1">
                     <h3 className="text-xs sm:text-sm font-extrabold text-white tracking-wider uppercase">
                       ORGANIZING HELPDESK
                     </h3>
-                    <div className="text-slate-300 text-xs sm:text-sm space-y-1.5 pt-1">
+                    <div className="text-slate-200 text-xs sm:text-sm space-y-1.5 pt-1">
                       <p className="flex items-center gap-2">
                         <strong className="font-semibold text-white">Dr. Om Prakash Chandermohan:</strong>{' '}
-                        <a href="tel:+919880690684" className="hover:text-amber-300 transition-colors">
+                        <a href="tel:+919880690684" className="hover:text-ocean-sky transition-colors">
                           +91 98806 90684
                         </a>
                       </p>
                       <p className="flex items-center gap-2">
                         <strong className="font-semibold text-white">Dr. Brijesh Mishra:</strong>{' '}
-                        <a href="tel:+917703004534" className="hover:text-amber-300 transition-colors">
+                        <a href="tel:+917703004534" className="hover:text-ocean-sky transition-colors">
                           +91 7703 004 534
                         </a>
                       </p>
@@ -128,7 +128,7 @@ export default function ContactSection() {
             {/* Right Column: Contact Us Form Card */}
             <div className="lg:col-span-6">
               <div className="bg-white rounded-2xl p-6 sm:p-10 shadow-2xl border border-white/20">
-                <h2 className="text-xl sm:text-2xl font-black text-[#0B192C] uppercase tracking-tight mb-2">
+                <h2 className="text-xl sm:text-2xl font-black text-ocean-deep uppercase tracking-tight mb-2">
                   Send a Message to Secretariat
                 </h2>
                 <p className="text-xs text-slate-500 mb-6">
@@ -144,7 +144,7 @@ export default function ContactSection() {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-900 text-xs sm:text-sm rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white transition-colors"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-900 text-xs sm:text-sm rounded-xl focus:outline-none focus:border-ocean-blue focus:bg-white transition-colors"
                     />
                     <input
                       type="email"
@@ -152,7 +152,7 @@ export default function ContactSection() {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-900 text-xs sm:text-sm rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white transition-colors"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-900 text-xs sm:text-sm rounded-xl focus:outline-none focus:border-ocean-blue focus:bg-white transition-colors"
                     />
                   </div>
 
@@ -164,7 +164,7 @@ export default function ContactSection() {
                       required
                       value={formData.mobile}
                       onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-900 text-xs sm:text-sm rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white transition-colors"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-900 text-xs sm:text-sm rounded-xl focus:outline-none focus:border-ocean-blue focus:bg-white transition-colors"
                     />
                     <input
                       type="text"
@@ -172,7 +172,7 @@ export default function ContactSection() {
                       required
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-900 text-xs sm:text-sm rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white transition-colors"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-900 text-xs sm:text-sm rounded-xl focus:outline-none focus:border-ocean-blue focus:bg-white transition-colors"
                     />
                   </div>
 
@@ -183,13 +183,13 @@ export default function ContactSection() {
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-900 text-xs sm:text-sm rounded-xl focus:outline-none focus:border-amber-500 focus:bg-white transition-colors resize-none"
+                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-900 text-xs sm:text-sm rounded-xl focus:outline-none focus:border-ocean-blue focus:bg-white transition-colors resize-none"
                   />
 
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full bg-[#0B192C] hover:bg-slate-900 text-amber-400 font-extrabold uppercase py-3.5 tracking-wider text-xs sm:text-sm rounded-xl transition-all cursor-pointer shadow-md"
+                    className="w-full bg-linear-to-r from-ocean-blue to-ocean-cyan hover:from-ocean-deep hover:to-ocean-blue text-white font-extrabold uppercase py-3.5 tracking-wider text-xs sm:text-sm rounded-xl transition-all cursor-pointer shadow-md active:scale-95"
                   >
                     SUBMIT INQUIRY
                   </button>
@@ -210,11 +210,11 @@ export default function ContactSection() {
       {/* 2. Venue & 'How to Reach' Accordion Section */}
       <section className="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-2">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-800 font-bold text-xs uppercase tracking-wider">
-            <Navigation className="w-3.5 h-3.5 text-amber-600" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-ocean-ice text-ocean-blue border border-ocean-sky/60 font-bold text-xs uppercase tracking-wider">
+            <Navigation className="w-3.5 h-3.5 text-ocean-cyan" />
             <span>Transit & Navigation Guide</span>
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B192C] tracking-tight uppercase">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-ocean-deep tracking-tight uppercase">
             Venue & How To Reach Us
           </h2>
           <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
@@ -233,11 +233,11 @@ export default function ContactSection() {
                 className="w-full px-5 py-4 flex items-center justify-between text-left bg-slate-50/50 hover:bg-slate-100/60 transition-colors cursor-pointer"
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0 border border-blue-200">
+                  <div className="w-10 h-10 rounded-xl bg-ocean-ice text-ocean-blue flex items-center justify-center shrink-0 border border-ocean-sky/60">
                     <Plane className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-[#0B192C]">
+                    <h3 className="text-sm font-bold text-ocean-deep">
                       From Kempegowda International Airport (BLR)
                     </h3>
                     <p className="text-[11px] text-slate-500">
@@ -246,7 +246,7 @@ export default function ContactSection() {
                   </div>
                 </div>
                 {activeAccordion === 'airport' ? (
-                  <ChevronUp className="w-5 h-5 text-amber-600" />
+                  <ChevronUp className="w-5 h-5 text-ocean-blue" />
                 ) : (
                   <ChevronDown className="w-5 h-5 text-slate-400" />
                 )}
@@ -259,13 +259,13 @@ export default function ContactSection() {
                   </p>
                   <div className="space-y-2 pl-2">
                     <div className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-ocean-cyan mt-1.5 shrink-0" />
                       <span>
                         <strong>Airport App-Based Cabs:</strong> Official pickup zones for Uber, Ola, and Karnataka Tourism Airport Taxis operate 24/7 directly outside Terminals 1 & 2. Ask for <em>CMR University OMBR Campus, Banaswadi</em>.
                       </span>
                     </div>
                     <div className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-ocean-cyan mt-1.5 shrink-0" />
                       <span>
                         <strong>BMTC Vayu Vajra AC Bus:</strong> Board bus route <strong>KIA-8</strong> or <strong>KIA-6</strong> towards Kalyan Nagar / Banaswadi Ring Road. Get down at Kalyan Nagar bus stop (3 km from campus).
                       </span>
@@ -282,11 +282,11 @@ export default function ContactSection() {
                 className="w-full px-5 py-4 flex items-center justify-between text-left bg-slate-50/50 hover:bg-slate-100/60 transition-colors cursor-pointer"
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center shrink-0 border border-amber-200">
+                  <div className="w-10 h-10 rounded-xl bg-ocean-blue/15 text-ocean-blue flex items-center justify-center shrink-0 border border-ocean-blue/30">
                     <Train className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-[#0B192C]">
+                    <h3 className="text-sm font-bold text-ocean-deep">
                       From KSR Bengaluru & Yesvantpur Railway Stations
                     </h3>
                     <p className="text-[11px] text-slate-500">
@@ -295,7 +295,7 @@ export default function ContactSection() {
                   </div>
                 </div>
                 {activeAccordion === 'train' ? (
-                  <ChevronUp className="w-5 h-5 text-amber-600" />
+                  <ChevronUp className="w-5 h-5 text-ocean-blue" />
                 ) : (
                   <ChevronDown className="w-5 h-5 text-slate-400" />
                 )}
@@ -308,13 +308,13 @@ export default function ContactSection() {
                   </p>
                   <div className="space-y-2 pl-2">
                     <div className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-ocean-cyan mt-1.5 shrink-0" />
                       <span>
                         <strong>From KSR Bengaluru City (Majestic):</strong> Take the Namma Metro Purple Line from Majestic to <em>Swami Vivekananda Road</em> or <em>Baiyappanahalli</em> station, then take an auto-rickshaw or taxi (10 mins) to OMBR Layout.
                       </span>
                     </div>
                     <div className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-ocean-cyan mt-1.5 shrink-0" />
                       <span>
                         <strong>From Yesvantpur Junction (YPR):</strong> Book an Ola/Uber cab or take BMTC bus direct to Kalyan Nagar / Banaswadi via Outer Ring Road (ORR).
                       </span>
@@ -331,11 +331,11 @@ export default function ContactSection() {
                 className="w-full px-5 py-4 flex items-center justify-between text-left bg-slate-50/50 hover:bg-slate-100/60 transition-colors cursor-pointer"
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-800 flex items-center justify-center shrink-0 border border-emerald-200">
+                  <div className="w-10 h-10 rounded-xl bg-ocean-ice text-ocean-blue flex items-center justify-center shrink-0 border border-ocean-sky/40">
                     <Building className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-[#0B192C]">
+                    <h3 className="text-sm font-bold text-ocean-deep">
                       Campus Address & Help Desk Assistance
                     </h3>
                     <p className="text-[11px] text-slate-500">
@@ -344,7 +344,7 @@ export default function ContactSection() {
                   </div>
                 </div>
                 {activeAccordion === 'campus' ? (
-                  <ChevronUp className="w-5 h-5 text-amber-600" />
+                  <ChevronUp className="w-5 h-5 text-ocean-blue" />
                 ) : (
                   <ChevronDown className="w-5 h-5 text-slate-400" />
                 )}
@@ -353,7 +353,7 @@ export default function ContactSection() {
               {activeAccordion === 'campus' && (
                 <div className="p-5 border-t border-slate-100 space-y-3 text-xs text-slate-600 animate-fadeIn">
                   <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-slate-800 space-y-1">
-                    <p className="font-bold text-[#0B192C]">CMR University - OMBR Campus</p>
+                    <p className="font-bold text-ocean-deep">CMR University - OMBR Campus</p>
                     <p>No. 5, Bhuvanagiri, Lakshmamma Layout, Banaswadi, Bengaluru, Karnataka 560043</p>
                     <p className="text-slate-500 text-[11px]">Landmark: Near Banaswadi Fire Station / HRBR Layout 2nd Block</p>
                   </div>
@@ -365,9 +365,9 @@ export default function ContactSection() {
             </div>
 
             {/* Quick Action Navigation Bar */}
-            <div className="bg-[#0B192C] text-white p-4 rounded-2xl flex items-center justify-between gap-4">
+            <div className="bg-ocean-deep text-white p-4 rounded-2xl flex items-center justify-between gap-4 border border-ocean-blue/30">
               <div className="flex items-center gap-3">
-                <MapPin className="w-5 h-5 text-amber-400 shrink-0" />
+                <MapPin className="w-5 h-5 text-ocean-cyan shrink-0" />
                 <span className="text-xs font-semibold">
                   Need on-spot driving directions?
                 </span>
@@ -376,7 +376,7 @@ export default function ContactSection() {
                 href="https://maps.google.com/?q=CMR+University+OMBR+Campus+Banaswadi+Bengaluru"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold transition-all shrink-0"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-linear-to-r from-ocean-blue to-ocean-cyan text-white text-xs font-bold transition-all shrink-0 hover:from-ocean-deep hover:to-ocean-blue"
               >
                 <span>Google Maps</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -385,7 +385,7 @@ export default function ContactSection() {
           </div>
 
           {/* Right Column: Google Maps Interactive Iframe */}
-          <div className="lg:col-span-6 min-h-[380px] lg:min-h-full rounded-2xl overflow-hidden border border-slate-200 shadow-md relative bg-slate-100">
+          <div className="lg:col-span-6 min-h-95 lg:min-h-full rounded-2xl overflow-hidden border border-slate-200 shadow-md relative bg-slate-100">
             <iframe
               title="CMR University Location Map"
               src="https://maps.google.com/maps?q=CMR+University,+OMBR+Campus,+Banaswadi,+Bengaluru&t=&z=15&ie=UTF8&iwloc=&output=embed"
@@ -402,10 +402,10 @@ export default function ContactSection() {
             <div className="absolute top-4 left-4 z-20 bg-white/95 backdrop-blur-xs p-4 rounded-xl shadow-lg border border-slate-200 max-w-xs sm:max-w-sm">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <span className="text-[10px] font-bold text-amber-600 uppercase tracking-wide">
+                  <span className="text-[10px] font-bold text-ocean-blue uppercase tracking-wide">
                     Conference Venue
                   </span>
-                  <h4 className="font-extrabold text-[#0B192C] text-sm leading-snug">
+                  <h4 className="font-extrabold text-ocean-deep text-sm leading-snug">
                     CMR University, OMBR Campus
                   </h4>
                   <p className="text-xs text-slate-600 leading-normal mt-1">
@@ -416,7 +416,7 @@ export default function ContactSection() {
                   href="https://maps.google.com/?q=CMR+University,+OMBR+Campus,+Banaswadi,+Bengaluru"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-amber-50 hover:bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 transition-colors"
+                  className="w-8 h-8 rounded-full bg-ocean-ice hover:bg-ocean-sky/40 text-ocean-blue flex items-center justify-center shrink-0 transition-colors"
                   title="Open in Google Maps"
                 >
                   <Navigation className="w-4 h-4 fill-current" />

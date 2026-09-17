@@ -67,15 +67,15 @@ export default function Navbar({ activeSection, setActiveSection }) {
             onClick={() => handleItemClick('HOME')}
             className="flex items-center gap-3 cursor-pointer group select-none"
           >
-            <div className="w-10 h-10 rounded-xl bg-[#0B192C] text-amber-400 flex items-center justify-center shadow-md border border-slate-700/50 group-hover:scale-105 transition-transform duration-200">
+            <div className="w-10 h-10 rounded-xl bg-ocean-deep text-ocean-cyan flex items-center justify-center shadow-md border border-ocean-blue/30 group-hover:scale-105 transition-transform duration-200">
               <GraduationCap className="w-6 h-6 stroke-[2.2]" />
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-extrabold text-xl tracking-tight text-[#0B192C]">
+                <span className="font-extrabold text-xl tracking-tight text-ocean-deep">
                   ICEEMCS
                 </span>
-                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold uppercase bg-amber-500/10 text-amber-700 border border-amber-500/30">
+                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold uppercase bg-ocean-ice text-ocean-blue border border-ocean-sky/40">
                   2027
                 </span>
               </div>
@@ -104,14 +104,14 @@ export default function Navbar({ activeSection, setActiveSection }) {
                       onClick={() => handleItemClick(item.action)}
                       className={`px-3 py-2 rounded-md inline-flex items-center gap-1.5 transition-all cursor-pointer ${
                         isActive
-                          ? 'text-[#0B192C] bg-slate-100 font-bold'
-                          : 'hover:text-[#0B192C] hover:bg-slate-50'
+                          ? 'text-ocean-blue bg-ocean-ice/60 font-bold'
+                          : 'hover:text-ocean-blue hover:bg-slate-50'
                       }`}
                     >
                       <span>{item.name}</span>
                       <ChevronDown
                         className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
-                          dropdownOpen ? 'rotate-180 text-slate-600' : 'group-hover:rotate-180'
+                          dropdownOpen ? 'rotate-180 text-ocean-blue' : 'group-hover:rotate-180'
                         }`}
                       />
                     </button>
@@ -140,8 +140,8 @@ export default function Navbar({ activeSection, setActiveSection }) {
                             }}
                             className={`block px-3.5 py-2.5 rounded-lg text-xs font-medium transition-colors ${
                               activeSection === subItem.action
-                                ? 'bg-amber-50 text-amber-900 font-bold border border-amber-200/60'
-                                : 'text-slate-700 hover:bg-slate-50 hover:text-[#0B192C]'
+                                ? 'bg-ocean-ice text-ocean-deep font-bold border border-ocean-sky/60'
+                                : 'text-slate-700 hover:bg-ocean-ice/40 hover:text-ocean-blue'
                             }`}
                           >
                             {subItem.label}
@@ -164,8 +164,8 @@ export default function Navbar({ activeSection, setActiveSection }) {
                   }}
                   className={`px-3 py-2 rounded-md transition-all cursor-pointer ${
                     isActive
-                      ? 'text-[#0B192C] bg-slate-100 font-bold'
-                      : 'hover:text-[#0B192C] hover:bg-slate-50'
+                      ? 'text-ocean-blue bg-ocean-ice/60 font-bold'
+                      : 'hover:text-ocean-blue hover:bg-slate-50'
                   }`}
                 >
                   {item.name}
@@ -178,7 +178,7 @@ export default function Navbar({ activeSection, setActiveSection }) {
           <div className="hidden sm:flex items-center gap-3">
             <button
               onClick={() => handleItemClick('SUBMISSION')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs sm:text-sm tracking-wide shadow-sm hover:shadow transition-all duration-200 cursor-pointer active:scale-95"
+              className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-lg bg-linear-to-r from-ocean-blue to-ocean-cyan hover:from-ocean-deep hover:to-ocean-blue text-white font-bold text-xs sm:text-sm tracking-wide shadow-sm hover:shadow-md hover:shadow-ocean-blue/20 transition-all duration-200 cursor-pointer active:scale-95"
             >
               <Send className="w-4 h-4 stroke-[2.2]" />
               <span>Submit Paper</span>
@@ -189,7 +189,7 @@ export default function Navbar({ activeSection, setActiveSection }) {
           <div className="lg:hidden flex items-center gap-2">
             <button
               onClick={() => handleItemClick('SUBMISSION')}
-              className="px-3 py-1.5 rounded-md bg-amber-500 text-slate-950 font-bold text-xs sm:hidden"
+              className="px-3 py-1.5 rounded-md bg-ocean-blue text-white font-bold text-xs sm:hidden"
             >
               Submit
             </button>
@@ -223,7 +223,7 @@ export default function Navbar({ activeSection, setActiveSection }) {
                           e.preventDefault();
                           handleItemClick(subItem.action);
                         }}
-                        className="block px-3 py-2 text-sm font-medium text-slate-700 hover:text-amber-600 hover:bg-slate-50 rounded-md"
+                        className="block px-3 py-2 text-sm font-medium text-slate-700 hover:text-ocean-blue hover:bg-ocean-ice/40 rounded-md"
                       >
                         {subItem.label}
                       </a>
@@ -243,7 +243,7 @@ export default function Navbar({ activeSection, setActiveSection }) {
                 }}
                 className={`block px-3 py-2.5 text-sm font-semibold rounded-md ${
                   activeSection === item.action
-                    ? 'bg-slate-100 text-[#0B192C] font-bold'
+                    ? 'bg-ocean-ice text-ocean-deep font-bold'
                     : 'text-slate-700 hover:bg-slate-50'
                 }`}
               >
@@ -254,7 +254,7 @@ export default function Navbar({ activeSection, setActiveSection }) {
           <div className="pt-3">
             <button
               onClick={() => handleItemClick('SUBMISSION')}
-              className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-sm shadow-sm"
+              className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-linear-to-r from-ocean-blue to-ocean-cyan text-white font-bold text-sm shadow-sm"
             >
               <Send className="w-4 h-4" />
               <span>Submit Paper Now</span>

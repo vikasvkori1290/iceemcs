@@ -105,11 +105,11 @@ export default function KeynotesPage({ onNavigate }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-800 font-bold text-xs uppercase tracking-wider">
-            <Mic className="w-3.5 h-3.5 text-amber-600" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-ocean-ice text-ocean-blue border border-ocean-sky/60 font-bold text-xs uppercase tracking-wider">
+            <Mic className="w-3.5 h-3.5 text-ocean-cyan" />
             <span>Distinguished Thought Leaders</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B192C] tracking-tight uppercase">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ocean-deep tracking-tight uppercase">
             Keynote Speakers
           </h1>
           <p className="text-slate-600 text-sm sm:text-base font-normal leading-relaxed">
@@ -125,18 +125,18 @@ export default function KeynotesPage({ onNavigate }) {
               return (
                 <div
                   key={speaker.id}
-                  className="bg-white rounded-2xl p-6 border-2 border-dashed border-slate-300/80 flex flex-col items-center justify-between text-center hover:border-amber-400 transition-all duration-300 shadow-xs"
+                  className="bg-white rounded-2xl p-6 border-2 border-dashed border-slate-300/80 flex flex-col items-center justify-between text-center hover:border-ocean-cyan transition-all duration-300 shadow-xs"
                 >
                   <div className="space-y-4 pt-4 flex flex-col items-center">
-                    <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-slate-100 border-2 border-dashed border-slate-300 flex items-center justify-center text-slate-400">
+                    <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-ocean-ice/40 border-2 border-dashed border-ocean-sky/60 flex items-center justify-center text-ocean-blue">
                       <Sparkles className="w-8 h-8 stroke-[1.8]" />
                     </div>
 
                     <div className="space-y-2">
-                      <span className="inline-block px-2.5 py-0.5 rounded-full bg-amber-100/80 text-amber-900 text-[11px] font-bold tracking-wide">
+                      <span className="inline-block px-2.5 py-0.5 rounded-full bg-ocean-ice text-ocean-deep text-[11px] font-bold tracking-wide border border-ocean-sky/50">
                         {speaker.status}
                       </span>
-                      <h3 className="font-extrabold text-[#0B192C] text-base sm:text-lg">
+                      <h3 className="font-extrabold text-ocean-deep text-base sm:text-lg">
                         Speaker To Be Announced
                       </h3>
                       <p className="text-slate-500 text-xs leading-relaxed max-w-xs">
@@ -160,24 +160,24 @@ export default function KeynotesPage({ onNavigate }) {
               >
                 {/* View Profile Badge on hover */}
                 <div className="space-y-4 w-full flex flex-col items-center">
-                  {/* Circular Headshot with Oxford Navy & Amber Accent Ring */}
-                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 ring-4 ring-amber-500/20 group-hover:ring-amber-500/70 transition-all duration-300 shadow-md">
+                  {/* Circular Headshot with Ocean Breeze Accent Ring */}
+                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 ring-4 ring-ocean-sky/30 group-hover:ring-ocean-cyan transition-all duration-300 shadow-md">
                     <img
                       src={speaker.image}
                       alt={speaker.name}
                       className="w-full h-full rounded-full object-cover object-top"
                     />
-                    <div className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-[#0B192C] text-amber-400 flex items-center justify-center shadow-md border-2 border-white">
+                    <div className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-ocean-deep text-ocean-cyan flex items-center justify-center shadow-md border-2 border-white">
                       <UserCheck className="w-4 h-4" />
                     </div>
                   </div>
 
                   {/* Speaker Details */}
                   <div className="space-y-1.5 w-full">
-                    <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded border border-amber-200/60">
+                    <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-ocean-blue bg-ocean-ice px-2.5 py-0.5 rounded border border-ocean-sky/60">
                       {speaker.affiliation}
                     </span>
-                    <h2 className="font-extrabold text-[#0B192C] text-base sm:text-lg leading-snug pt-1 group-hover:text-amber-600 transition-colors">
+                    <h2 className="font-extrabold text-ocean-deep text-base sm:text-lg leading-snug pt-1 group-hover:text-ocean-blue transition-colors">
                       {speaker.name}
                     </h2>
                     <p className="text-slate-600 text-xs leading-relaxed line-clamp-3">
@@ -190,7 +190,7 @@ export default function KeynotesPage({ onNavigate }) {
                 <div className="pt-5 w-full border-t border-slate-100 mt-5 space-y-2">
                   <button
                     type="button"
-                    className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-amber-50 group-hover:bg-amber-500 text-amber-900 group-hover:text-slate-950 text-xs font-bold transition-all duration-200"
+                    className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-ocean-ice group-hover:bg-linear-to-r group-hover:from-ocean-blue group-hover:to-ocean-cyan text-ocean-deep group-hover:text-white text-xs font-bold transition-all duration-200"
                   >
                     <span>View Keynote Profile</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -216,8 +216,8 @@ export default function KeynotesPage({ onNavigate }) {
             className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Header with Oxford Navy Background */}
-            <div className="bg-[#0B192C] text-white p-6 sm:p-7 relative">
+            {/* Modal Header with Ocean Deep Background */}
+            <div className="bg-ocean-deep text-white p-6 sm:p-7 relative">
               <button
                 onClick={() => setSelectedSpeaker(null)}
                 className="absolute top-5 right-5 text-slate-300 hover:text-white p-1.5 rounded-xl hover:bg-white/10 transition-colors cursor-pointer"
@@ -228,7 +228,7 @@ export default function KeynotesPage({ onNavigate }) {
 
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
                 {/* Speaker Portrait */}
-                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full ring-4 ring-amber-400/60 shrink-0 overflow-hidden shadow-xl bg-slate-800">
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full ring-4 ring-ocean-cyan shrink-0 overflow-hidden shadow-xl bg-slate-800">
                   <img
                     src={selectedSpeaker.image}
                     alt={selectedSpeaker.name}
@@ -237,17 +237,17 @@ export default function KeynotesPage({ onNavigate }) {
                 </div>
 
                 <div className="text-center sm:text-left space-y-1.5 flex-1">
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-amber-400/20 text-amber-300 text-[11px] font-bold uppercase tracking-wider border border-amber-400/30">
-                    <Award className="w-3 h-3" />
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-ocean-blue/40 text-ocean-sky text-[11px] font-bold uppercase tracking-wider border border-ocean-cyan/40">
+                    <Award className="w-3 h-3 text-ocean-cyan" />
                     <span>Distinguished Keynote Speaker</span>
                   </div>
                   <h3 className="text-xl sm:text-2xl font-black text-white">
                     {selectedSpeaker.name}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 font-medium leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed">
                     {selectedSpeaker.title}
                   </p>
-                  <p className="text-xs text-amber-400/90 font-medium">
+                  <p className="text-xs text-ocean-sky font-medium">
                     {selectedSpeaker.affiliation}
                   </p>
                 </div>
@@ -257,17 +257,17 @@ export default function KeynotesPage({ onNavigate }) {
             {/* Modal Body */}
             <div className="p-6 sm:p-8 max-h-[70vh] overflow-y-auto space-y-6 text-slate-700 text-xs sm:text-sm">
               {/* Keynote Address Box */}
-              <div className="bg-amber-50/70 border border-amber-200/80 rounded-xl p-4 sm:p-5 space-y-2">
-                <div className="flex items-center gap-2 text-amber-900 font-bold text-xs uppercase tracking-wider">
-                  <BookOpen className="w-4 h-4 text-amber-600" />
+              <div className="bg-ocean-ice/50 border border-ocean-sky/60 rounded-xl p-4 sm:p-5 space-y-2">
+                <div className="flex items-center gap-2 text-ocean-deep font-bold text-xs uppercase tracking-wider">
+                  <BookOpen className="w-4 h-4 text-ocean-blue" />
                   <span>Keynote Address Title</span>
                 </div>
-                <h4 className="text-sm sm:text-base font-extrabold text-[#0B192C]">
+                <h4 className="text-sm sm:text-base font-extrabold text-ocean-deep">
                   "{selectedSpeaker.keynoteTitle}"
                 </h4>
                 {selectedSpeaker.keynoteDate && (
                   <div className="flex items-center gap-1.5 text-xs text-slate-600 pt-1">
-                    <Calendar className="w-3.5 h-3.5 text-amber-600" />
+                    <Calendar className="w-3.5 h-3.5 text-ocean-blue" />
                     <span className="font-semibold">{selectedSpeaker.keynoteDate}</span>
                   </div>
                 )}
@@ -312,7 +312,7 @@ export default function KeynotesPage({ onNavigate }) {
                       href={selectedSpeaker.linkedinUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#0077b5] text-white text-xs font-bold hover:bg-[#006097] transition-colors shadow-xs"
+                      className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-ocean-blue text-white text-xs font-bold hover:bg-ocean-deep transition-colors shadow-xs"
                     >
                       <Linkedin className="w-3.5 h-3.5 fill-current" />
                       <span>LinkedIn Profile</span>
@@ -326,7 +326,7 @@ export default function KeynotesPage({ onNavigate }) {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-colors border border-slate-200"
                     >
-                      <BookOpen className="w-3.5 h-3.5 text-amber-600" />
+                      <BookOpen className="w-3.5 h-3.5 text-ocean-blue" />
                       <span>Google Scholar</span>
                     </a>
                   )}

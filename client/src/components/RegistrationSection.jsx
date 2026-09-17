@@ -11,6 +11,13 @@ import {
   X,
   Send,
   HelpCircle,
+  FileText,
+  BadgeCheck,
+  Ticket,
+  GraduationCap,
+  Briefcase,
+  User,
+  Users,
 } from 'lucide-react';
 
 export default function RegistrationSection() {
@@ -29,87 +36,79 @@ export default function RegistrationSection() {
     category: '',
   });
 
-  const tiers = [
+  const categories = [
     {
       id: 'student',
       title: 'Student / Research Scholar',
-      badge: 'Early Scholar',
-      badgeStyle: 'bg-blue-100 text-blue-800 border-blue-200',
+      passType: 'Student Author Pass',
+      icon: GraduationCap,
       priceINR: '4,000',
       priceUSD: '100',
-      popular: false,
-      description:
-        'For full-time undergraduate, postgraduate, and PhD scholars presenting original research.',
-      benefits: [
-        'Oral / Poster Presentation slot (15 mins)',
-        'Conference Delegate Kit, Badge & Proceedings USB',
-        'Official IEEE / Conference Presentation Certificate',
-        'Inclusion in Conference Proceedings indexing',
-        'Networking lunches, high tea & banquet admission',
-        'Access to all Keynote & Technical Tracks',
+      eligibility: 'Full-time UG, PG, and PhD Scholars with valid institutional ID',
+      inclusions: [
+        'Oral presentation slot in technical session (Physical mode)',
+        'Inclusion of 1 accepted paper in conference proceedings',
+        'Official Certificate of Paper Presentation',
+        'Conference delegate kit, badge & digital materials',
+        'Access to keynotes, workshops & technical tracks',
+        'Lunch, high-tea & networking sessions for 2 days',
       ],
     },
     {
       id: 'faculty',
       title: 'Academician / Faculty',
-      badge: 'Most Popular',
-      badgeStyle: 'bg-amber-100 text-amber-900 border-amber-300 font-bold',
+      passType: 'Faculty Author Pass',
+      icon: BadgeCheck,
       priceINR: '4,800',
       priceUSD: '120',
-      popular: true,
-      description:
-        'For professors, lecturers, and academic researchers affiliated with recognized institutions.',
-      benefits: [
-        'Primary Author Paper Presentation slot (20 mins)',
-        'Deluxe Conference Delegate Kit & Certificate of Honor',
-        'Inclusion in official indexed proceedings & digital library',
-        'Networking lunches, morning coffee & banquet access',
-        'Eligibility for Best Paper & Session Chair awards',
-        'Unlimited access to all technical tracks & workshops',
+      eligibility: 'Professors, Assistant Professors, and University Researchers',
+      inclusions: [
+        'Oral presentation slot in technical session (Physical mode)',
+        'Inclusion of 1 accepted paper in conference proceedings',
+        'Official Certificate of Paper Presentation',
+        'Deluxe conference delegate kit & memento',
+        'Full access to all keynote sessions & technical tracks',
+        'Networking lunches, high-tea & official conference banquet',
       ],
     },
     {
       id: 'industry',
       title: 'Industry Professional',
-      badge: 'Corporate Track',
-      badgeStyle: 'bg-emerald-100 text-emerald-800 border-emerald-200',
+      passType: 'Corporate Author Pass',
+      icon: Briefcase,
       priceINR: '5,000',
       priceUSD: '125',
-      popular: false,
-      description:
-        'For engineers, corporate scientists, tech founders, and R&D industry representatives.',
-      benefits: [
-        'Industry Track Paper / Technical Case Study presentation',
-        'VIP Delegate Kit & Executive Certificate',
+      eligibility: 'Engineers, R&D Scientists, and Corporate Technologists',
+      inclusions: [
+        'Oral presentation slot in industry technical track',
+        'Inclusion of 1 accepted paper in conference proceedings',
+        'Certificate of Presentation & Corporate Participation',
+        'Executive delegate kit & conference proceedings USB',
         'Exclusive Industry-Academia Networking Roundtables',
-        'Full proceedings indexing & corporate citation attribution',
-        'Priority seating at Keynotes & Plenary discussions',
-        'All networking meals, lunches & executive banquet',
+        'All networking meals, coffee breaks & conference banquet',
       ],
     },
     {
       id: 'attendee',
       title: 'Attendee / Listener',
-      badge: 'Non-Presenting',
-      badgeStyle: 'bg-purple-100 text-purple-800 border-purple-200',
+      passType: 'Delegate Observer Pass',
+      icon: User,
       priceINR: '2,500',
       priceUSD: '60',
-      popular: false,
-      description:
-        'For scholars, students, and practitioners attending technical sessions without presenting a paper.',
-      benefits: [
-        'Access to all 3 Tracks, Keynotes & Special Sessions',
-        'Official Conference Participation / Attendee Certificate',
-        'Conference Programme Schedule & Digital Abstract Book',
-        'Interactive audience Q&A privileges in all sessions',
-        'Networking lunches, morning tea & refreshment sessions',
+      eligibility: 'Scholars, students, or practitioners attending without paper presentation',
+      inclusions: [
+        'Full admission to all keynote speeches & technical tracks',
+        'Official Certificate of Conference Participation',
+        'Conference program schedule & abstract book',
+        'Interactive audience Q&A privileges across all tracks',
+        'Lunch, high-tea & refreshment sessions for 2 days',
       ],
     },
   ];
 
-  const handleOpenRegister = (tier) => {
-    setSelectedTier(tier);
-    setFormData((prev) => ({ ...prev, category: tier.title }));
+  const handleOpenRegister = (cat) => {
+    setSelectedTier(cat);
+    setFormData((prev) => ({ ...prev, category: cat.title }));
     setModalOpen(true);
     setRegistrationSubmitted(false);
   };
@@ -134,122 +133,139 @@ export default function RegistrationSection() {
   return (
     <section id="registration-page" className="bg-slate-50 min-h-screen py-16 sm:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        
+        {/* 1. Academic Header Banner */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-800 font-bold text-xs uppercase tracking-wider">
-            <CreditCard className="w-3.5 h-3.5 text-amber-600" />
-            <span>Transparent Pricing & Registration</span>
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-ocean-ice text-ocean-deep border border-ocean-sky/60 font-bold text-xs uppercase tracking-wider">
+            <Ticket className="w-3.5 h-3.5 text-ocean-blue" />
+            <span>Author & Delegate Pass Schedule</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B192C] tracking-tight uppercase">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-ocean-deep tracking-tight uppercase">
             Conference Registration Fees
           </h1>
-          <p className="text-slate-600 text-sm sm:text-base font-normal leading-relaxed">
-            Register for ICEEMCS 2027 to present your research, connect with top researchers, and gain indexed publication.
+          <p className="text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed">
+            Fixed one-time conference registration fee for accepted authors and attendees. All fees cover physical conference admission, presentation privileges, delegate kits, and publication indexing.
           </p>
 
           {/* Currency Toggle Switch */}
-          <div className="pt-4 flex items-center justify-center">
-            <div className="inline-flex items-center bg-slate-200/80 p-1 rounded-xl border border-slate-300/80 shadow-xs">
+          <div className="pt-2 flex items-center justify-center">
+            <div className="inline-flex items-center bg-white p-1 rounded-xl border border-slate-200 shadow-2xs">
               <button
                 onClick={() => setCurrency('INR')}
-                className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   currency === 'INR'
-                    ? 'bg-[#0B192C] text-white shadow-xs'
+                    ? 'bg-ocean-deep text-white shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                INR (₹) - Indian Authors
+                🇮🇳 Indian Authors (INR ₹)
               </button>
               <button
                 onClick={() => setCurrency('USD')}
-                className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   currency === 'USD'
-                    ? 'bg-[#0B192C] text-white shadow-xs'
+                    ? 'bg-ocean-deep text-white shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                USD ($) - International Authors
+                🌐 International Authors (USD $)
               </button>
             </div>
           </div>
         </div>
 
-        {/* 4-Tier Cards Grid */}
+        {/* 2. One-Time Payment Assurance Strip */}
+        <div className="mb-10 bg-white border border-slate-200/90 rounded-xl p-4 flex flex-wrap items-center justify-between gap-4 shadow-2xs">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-5 h-5 stroke-2" />
+            </div>
+            <div>
+              <h4 className="text-xs sm:text-sm font-extrabold text-slate-900">
+                Fixed One-Time Fee Policy
+              </h4>
+              <p className="text-[11px] sm:text-xs text-slate-500">
+                Single non-recurring payment per registered paper or delegate pass. No hidden processing charges.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 text-xs font-bold text-ocean-blue">
+            <span>Mode: Physical Presentation at CMR University</span>
+          </div>
+        </div>
+
+        {/* 3. Delegate Pass Category Cards (Replaced SaaS pricing table) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch mb-14">
-          {tiers.map((tier) => {
-            const isPopular = tier.popular;
+          {categories.map((cat) => {
+            const IconComponent = cat.icon;
             return (
               <div
-                key={tier.id}
-                className={`relative rounded-2xl flex flex-col justify-between transition-all duration-300 ${
-                  isPopular
-                    ? 'bg-white border-2 border-amber-500 shadow-xl ring-4 ring-amber-500/10 lg:-translate-y-2'
-                    : 'bg-white border border-slate-200 shadow-md hover:shadow-lg hover:-translate-y-1'
-                } p-6 sm:p-7`}
+                key={cat.id}
+                className="bg-white rounded-2xl border border-slate-200/90 hover:border-ocean-blue/50 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between overflow-hidden"
               >
-                {/* Popular Pill */}
-                {isPopular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-[11px] font-black uppercase px-3 py-0.5 rounded-full shadow-md flex items-center gap-1">
-                    <Sparkles className="w-3 h-3" /> Recommended Tier
-                  </div>
-                )}
-
                 <div>
-                  {/* Category Header */}
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span
-                      className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded border ${tier.badgeStyle}`}
-                    >
-                      {tier.badge}
-                    </span>
-                  </div>
+                  {/* Top Accent Strip */}
+                  <div className="h-1.5 w-full bg-linear-to-r from-ocean-deep via-ocean-blue to-ocean-cyan" />
 
-                  <h2 className="text-lg font-extrabold text-[#0B192C] leading-snug">
-                    {tier.title}
-                  </h2>
-                  <p className="text-xs text-slate-500 mt-1 min-h-[36px] leading-relaxed">
-                    {tier.description}
-                  </p>
+                  <div className="p-6 pb-4">
+                    {/* Pass Badge & Icon */}
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-ocean-deep bg-ocean-ice px-2.5 py-1 rounded-md">
+                        {cat.passType}
+                      </span>
+                      <div className="w-8 h-8 rounded-lg bg-slate-100 text-ocean-blue flex items-center justify-center">
+                        <IconComponent className="w-4 h-4 stroke-2" />
+                      </div>
+                    </div>
 
-                  {/* Price Tag */}
-                  <div className="my-5 p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-baseline gap-1.5">
-                    <span className="text-3xl sm:text-4xl font-black text-[#0B192C]">
-                      {currency === 'INR' ? `₹${tier.priceINR}` : `$${tier.priceUSD}`}
-                    </span>
-                    <span className="text-xs font-semibold text-slate-500">
-                      / author
-                    </span>
-                  </div>
-
-                  {/* Bulleted Benefits */}
-                  <div className="space-y-2.5 pt-2 border-t border-slate-100">
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                      Tier Benefits Include:
+                    <h2 className="text-lg font-black text-ocean-deep leading-snug">
+                      {cat.title}
+                    </h2>
+                    <p className="text-[11px] text-slate-500 mt-1 min-h-8 leading-relaxed">
+                      {cat.eligibility}
                     </p>
-                    {tier.benefits.map((benefit, bIdx) => (
-                      <div key={bIdx} className="flex items-start gap-2.5">
-                        <div className="w-4 h-4 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
-                          <Check className="w-3 h-3 stroke-[2.5]" />
-                        </div>
-                        <span className="text-xs text-slate-700 font-medium leading-tight">
-                          {benefit}
+
+                    {/* One-time Fee Display */}
+                    <div className="my-4 p-3.5 rounded-xl bg-slate-50 border border-slate-100">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                        One-Time Registration Fee
+                      </span>
+                      <div className="flex items-baseline gap-1.5">
+                        <span className="text-3xl font-black text-ocean-deep">
+                          {currency === 'INR' ? `₹${cat.priceINR}` : `$${cat.priceUSD}`}
+                        </span>
+                        <span className="text-[11px] font-semibold text-slate-500">
+                          / paper
                         </span>
                       </div>
-                    ))}
+                    </div>
+
+                    {/* Inclusions List */}
+                    <div className="space-y-2 pt-2 border-t border-slate-100">
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                        Pass Inclusions:
+                      </p>
+                      {cat.inclusions.map((item, idx) => (
+                        <div key={idx} className="flex items-start gap-2">
+                          <div className="w-3.5 h-3.5 rounded-full bg-ocean-ice text-ocean-blue flex items-center justify-center shrink-0 mt-0.5">
+                            <Check className="w-2.5 h-2.5 stroke-3" />
+                          </div>
+                          <span className="text-[11px] text-slate-700 font-medium leading-tight">
+                            {item}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Register CTA Button */}
-                <div className="pt-6 mt-6 border-t border-slate-100">
+                {/* Bottom Register CTA */}
+                <div className="p-6 pt-0">
                   <button
-                    onClick={() => handleOpenRegister(tier)}
-                    className={`w-full py-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm ${
-                      isPopular
-                        ? 'bg-amber-500 hover:bg-amber-600 text-slate-950 font-black hover:scale-[1.02]'
-                        : 'bg-[#0B192C] hover:bg-slate-800 text-white hover:scale-[1.02]'
-                    }`}
+                    onClick={() => handleOpenRegister(cat)}
+                    className="w-full py-2.5 rounded-xl bg-ocean-deep hover:bg-ocean-blue text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-xs active:scale-95"
                   >
-                    <span>Register Now</span>
+                    <span>Register for this Category</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -258,44 +274,104 @@ export default function RegistrationSection() {
           })}
         </div>
 
-        {/* Extra Page & Add-ons Banner */}
-        <div className="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-5 sm:p-6 mb-12 flex flex-col md:flex-row items-center justify-between gap-4">
+        {/* 4. Official Academic Fee Schedule Matrix (IEEE Conference Standard) */}
+        <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 sm:p-8 mb-12">
+          <div className="mb-6 space-y-1">
+            <span className="text-xs font-bold uppercase tracking-wider text-ocean-blue">
+              Summary Matrix
+            </span>
+            <h3 className="text-xl font-black text-ocean-deep">
+              Official Conference Registration Fee Schedule
+            </h3>
+            <p className="text-xs text-slate-500">
+              Complete fee breakdown across Indian and International author categories.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr className="bg-ocean-deep text-white border-b border-slate-200">
+                  <th className="p-3.5 font-bold uppercase tracking-wider">Registration Category</th>
+                  <th className="p-3.5 font-bold uppercase tracking-wider">Indian Delegates (INR)</th>
+                  <th className="p-3.5 font-bold uppercase tracking-wider">Foreign Delegates (USD)</th>
+                  <th className="p-3.5 font-bold uppercase tracking-wider">Presentation Slot</th>
+                  <th className="p-3.5 font-bold uppercase tracking-wider">Proceedings</th>
+                  <th className="p-3.5 font-bold uppercase tracking-wider text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 text-slate-700">
+                {categories.map((cat, idx) => (
+                  <tr key={idx} className="hover:bg-slate-50/80 transition-colors">
+                    <td className="p-3.5 font-bold text-slate-900">
+                      <div>{cat.title}</div>
+                      <span className="text-[10px] font-normal text-slate-500">{cat.passType}</span>
+                    </td>
+                    <td className="p-3.5 font-extrabold text-ocean-deep">
+                      ₹{cat.priceINR}
+                    </td>
+                    <td className="p-3.5 font-extrabold text-ocean-blue">
+                      ${cat.priceUSD}
+                    </td>
+                    <td className="p-3.5 font-medium">
+                      {cat.id === 'attendee' ? 'Observer Only' : 'Oral Presentation (15–20 Mins)'}
+                    </td>
+                    <td className="p-3.5 font-medium">
+                      {cat.id === 'attendee' ? 'Digital Abstracts' : 'Full Proceedings Indexing'}
+                    </td>
+                    <td className="p-3.5 text-right">
+                      <button
+                        onClick={() => handleOpenRegister(cat)}
+                        className="px-3 py-1.5 bg-ocean-ice text-ocean-deep hover:bg-ocean-blue hover:text-white rounded-lg font-bold text-[11px] transition-colors cursor-pointer"
+                      >
+                        Register
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* 5. Manuscript Page Policy Banner */}
+        <div className="bg-ocean-ice/50 border border-ocean-sky/60 rounded-2xl p-5 sm:p-6 mb-12 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center shrink-0 font-bold">
-              📄
+            <div className="w-10 h-10 rounded-xl bg-ocean-blue text-white flex items-center justify-center shrink-0 font-bold">
+              <FileText className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-sm sm:text-base font-extrabold text-[#0B192C]">
-                Manuscript Page Policy & Extra Page Fee
+              <h3 className="text-sm sm:text-base font-extrabold text-ocean-deep">
+                Manuscript Page Limit & Extra Page Surcharge
               </h3>
               <p className="text-xs text-slate-600 mt-0.5">
-                Standard registration covers up to <strong>6 pages</strong> per paper. Extra pages are charged at{' '}
-                <strong className="text-amber-800">₹200 / $5 per page</strong> (maximum 2 extra pages permitted).
+                Standard registration covers up to <strong>6 pages</strong> per paper. Additional pages are charged at{' '}
+                <strong className="text-ocean-blue font-bold">₹200 / $5 per page</strong> (maximum 2 extra pages allowed).
               </p>
             </div>
           </div>
-          <div className="inline-flex items-center gap-2 bg-white px-3.5 py-1.5 rounded-lg border border-amber-200 text-xs font-bold text-amber-900 shadow-2xs">
+          <div className="inline-flex items-center gap-2 bg-white px-3.5 py-1.5 rounded-lg border border-ocean-sky/60 text-xs font-bold text-ocean-deep shadow-2xs shrink-0">
             <ShieldCheck className="w-4 h-4 text-emerald-600" />
             <span>Inclusive of Publication Charges</span>
           </div>
         </div>
 
-        {/* Venue & Deadlines Information Card */}
-        <div className="bg-gradient-to-br from-[#08121f] via-[#0B192C] to-[#162744] rounded-2xl p-6 sm:p-10 text-white shadow-xl border border-slate-700/50">
+        {/* 6. Venue & Deadlines Information Card */}
+        <div className="bg-linear-to-br from-ocean-deep via-[#021f45] to-ocean-blue rounded-2xl p-6 sm:p-10 text-white shadow-xl border border-ocean-blue/30">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             {/* Venue info */}
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shrink-0 text-amber-400">
-                <MapPin className="w-6 h-6 stroke-[2]" />
+              <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shrink-0 text-ocean-cyan">
+                <MapPin className="w-6 h-6 stroke-2" />
               </div>
               <div className="space-y-1">
                 <h3 className="text-base sm:text-lg font-extrabold text-white uppercase tracking-wide">
                   Conference Host & Venue
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-md">
+                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-md">
                   CMR University, OMBR Campus, No. 5, Bhuvanagiri, Lakshmamma Layout, Banaswadi, Bengaluru, Karnataka 560043.
                 </p>
-                <span className="inline-block text-[11px] font-medium text-amber-400 pt-1">
+                <span className="inline-block text-[11px] font-medium text-ocean-sky pt-1">
                   Air-conditioned Auditorium & High-Tech Smart Seminar Halls
                 </span>
               </div>
@@ -303,17 +379,17 @@ export default function RegistrationSection() {
 
             {/* Deadline info */}
             <div className="flex items-start gap-4 lg:border-l lg:border-white/10 lg:pl-8">
-              <div className="w-12 h-12 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center shrink-0 font-bold">
-                <Clock className="w-6 h-6 stroke-[2.2]" />
+              <div className="w-12 h-12 rounded-xl bg-ocean-cyan text-ocean-deep flex items-center justify-center shrink-0 font-bold">
+                <Clock className="w-6 h-6 stroke-2" />
               </div>
               <div className="space-y-1">
                 <h3 className="text-base sm:text-lg font-extrabold text-white uppercase tracking-wide">
                   Important Registration Milestone
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
                   Final Registration & Camera-Ready Paper Submission Deadline:
                 </p>
-                <div className="inline-block px-3 py-1 rounded-md bg-amber-500/20 text-amber-300 font-black text-sm border border-amber-500/30 mt-1">
+                <div className="inline-block px-3 py-1 rounded-md bg-white/15 text-ocean-sky font-black text-sm border border-ocean-cyan/30 mt-1">
                   30th May 2027
                 </div>
               </div>
@@ -322,19 +398,19 @@ export default function RegistrationSection() {
         </div>
       </div>
 
-      {/* Registration Modal Popup */}
+      {/* 7. Registration Modal Popup */}
       {modalOpen && selectedTier && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fadeIn">
           <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
             {/* Modal Header */}
-            <div className="bg-[#0B192C] text-white p-5 sm:p-6 flex items-center justify-between">
+            <div className="bg-ocean-deep text-white p-5 sm:p-6 flex items-center justify-between">
               <div>
-                <span className="text-[10px] uppercase tracking-wider font-bold text-amber-400">
-                  Registration Portal
+                <span className="text-[10px] uppercase tracking-wider font-bold text-ocean-cyan">
+                  Official Registration Portal
                 </span>
                 <h3 className="text-lg font-extrabold">{selectedTier.title}</h3>
                 <p className="text-xs text-slate-300 mt-0.5">
-                  Fee: <span className="font-bold text-white">₹{selectedTier.priceINR}</span> (Indian Authors) / <span className="font-bold text-white">${selectedTier.priceUSD}</span> (International)
+                  One-time Fee: <span className="font-bold text-white">₹{selectedTier.priceINR}</span> (Indian) / <span className="font-bold text-white">${selectedTier.priceUSD}</span> (International)
                 </p>
               </div>
               <button
@@ -350,25 +426,25 @@ export default function RegistrationSection() {
               {registrationSubmitted ? (
                 <div className="text-center py-8 space-y-3">
                   <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
-                    <Check className="w-8 h-8 stroke-[3]" />
+                    <Check className="w-8 h-8 stroke-3" />
                   </div>
                   <h4 className="text-lg font-bold text-slate-900">
                     Registration Submitted Successfully!
                   </h4>
                   <p className="text-xs text-slate-600 max-w-sm mx-auto">
-                    Thank you for registering. A confirmation receipt and instructions have been queued for{' '}
+                    Thank you for registering. A confirmation receipt and presentation schedule instructions have been queued for{' '}
                     <strong>{formData.email}</strong>. Our secretariat will verify your transaction details shortly.
                   </p>
                 </div>
               ) : (
                 <>
                   {/* Bank Account Wire Details Box */}
-                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
-                    <div className="flex items-center gap-2 text-xs font-bold text-[#0B192C]">
-                      <Building2 className="w-4 h-4 text-amber-600" />
+                  <div className="bg-ocean-ice/40 p-4 rounded-xl border border-ocean-sky/60 space-y-2">
+                    <div className="flex items-center gap-2 text-xs font-bold text-ocean-deep">
+                      <Building2 className="w-4 h-4 text-ocean-blue" />
                       <span>Official NEFT / RTGS Wire Transfer Details</span>
                     </div>
-                    <div className="text-[11px] text-slate-600 space-y-0.5 font-mono">
+                    <div className="text-[11px] text-slate-700 space-y-0.5 font-mono">
                       <p><strong>Account Name:</strong> CMR UNIVERSITY CONFERENCES</p>
                       <p><strong>Bank:</strong> State Bank of India (SBI)</p>
                       <p><strong>Account Number:</strong> 39820194820</p>
@@ -389,7 +465,7 @@ export default function RegistrationSection() {
                         placeholder="e.g. Dr. Rajesh Kumar"
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white"
+                        className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-ocean-blue focus:bg-white"
                       />
                     </div>
 
@@ -404,7 +480,7 @@ export default function RegistrationSection() {
                           placeholder="author@univ.edu"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white"
+                          className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-ocean-blue focus:bg-white"
                         />
                       </div>
                       <div>
@@ -416,7 +492,7 @@ export default function RegistrationSection() {
                           placeholder="e.g. ICEEMCS-2027-042"
                           value={formData.paperId}
                           onChange={(e) => setFormData({ ...formData, paperId: e.target.value })}
-                          className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white"
+                          className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-ocean-blue focus:bg-white"
                         />
                       </div>
                     </div>
@@ -428,10 +504,10 @@ export default function RegistrationSection() {
                       <input
                         type="text"
                         required
-                        placeholder="e.g. CMR Institute of Technology / NIT Surathkal"
+                        placeholder="e.g. CMR University / NIT Surathkal"
                         value={formData.affiliation}
                         onChange={(e) => setFormData({ ...formData, affiliation: e.target.value })}
-                        className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white"
+                        className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-ocean-blue focus:bg-white"
                       />
                     </div>
 
@@ -447,13 +523,13 @@ export default function RegistrationSection() {
                         onChange={(e) =>
                           setFormData({ ...formData, transactionRef: e.target.value })
                         }
-                        className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white"
+                        className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-ocean-blue focus:bg-white"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full mt-2 py-3 bg-[#0B192C] hover:bg-slate-900 text-amber-400 font-extrabold text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
+                      className="w-full mt-2 py-3 bg-linear-to-r from-ocean-blue to-ocean-cyan hover:from-ocean-deep hover:to-ocean-blue text-white font-extrabold text-xs sm:text-sm rounded-xl flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
                     >
                       <Send className="w-4 h-4" />
                       <span>Confirm & Submit Registration Details</span>

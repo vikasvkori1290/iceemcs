@@ -54,7 +54,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 text-slate-800 antialiased selection:bg-amber-500/20 selection:text-amber-900">
+    <div className="flex flex-col min-h-screen bg-slate-50 text-slate-800 antialiased selection:bg-ocean-cyan/30 selection:text-ocean-deep">
       {/* 1. Top Micro-Bar (Thin dark strip with contact, dates badge, social icons) */}
       <TopHeader />
 
@@ -77,7 +77,7 @@ export default function App() {
           <TopicsSection onNavigate={handleNavClick} />
         ) : activeSection === 'KEYDATES' ? (
           /* Dedicated Keydates Page */
-          <KeydatesSection />
+          <KeydatesSection onNavigate={handleNavClick} />
         ) : activeSection === 'SUBMISSION' ? (
           /* Paper Submission Guidelines Page */
           <SubmissionSection />
